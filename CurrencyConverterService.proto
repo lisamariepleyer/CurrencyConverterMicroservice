@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package CurrencyConverterService;
+
+service CurrencyConverterService {
+  rpc getCurrencyCodes (CurrencyCodesRequest) returns (CurrencyCodesResponse) {}
+}
+
+message CurrencyCodesRequest {}
+
+message CurrencyCodesResponse {
+  string message = 1;
+}
