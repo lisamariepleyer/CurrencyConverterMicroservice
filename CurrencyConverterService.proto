@@ -9,5 +9,5 @@ service CurrencyConverterService {
 message CurrencyCodesRequest {}
 
 message CurrencyCodesResponse {
-  string message = 1;
+  repeated string currencyCodes = 1;
 }

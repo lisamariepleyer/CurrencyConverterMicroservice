@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x43urrencyConverterService.proto\x12\x18\x43urrencyConverterService\"\x16\n\x14\x43urrencyCodesRequest\"(\n\x15\x43urrencyCodesResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2\x91\x01\n\x18\x43urrencyConverterService\x12u\n\x10getCurrencyCodes\x12..CurrencyConverterService.CurrencyCodesRequest\x1a/.CurrencyConverterService.CurrencyCodesResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x43urrencyConverterService.proto\x12\x18\x43urrencyConverterService\"\x16\n\x14\x43urrencyCodesRequest\".\n\x15\x43urrencyCodesResponse\x12\x15\n\rcurrencyCodes\x18\x01 \x03(\t2\x91\x01\n\x18\x43urrencyConverterService\x12u\n\x10getCurrencyCodes\x12..CurrencyConverterService.CurrencyCodesRequest\x1a/.CurrencyConverterService.CurrencyCodesResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'CurrencyConverterService_pb2', globals())
@@ -23,7 +23,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CURRENCYCODESREQUEST._serialized_start=60
   _CURRENCYCODESREQUEST._serialized_end=82
   _CURRENCYCODESRESPONSE._serialized_start=84
-  _CURRENCYCODESRESPONSE._serialized_end=124
-  _CURRENCYCONVERTERSERVICE._serialized_start=127
-  _CURRENCYCONVERTERSERVICE._serialized_end=272
+  _CURRENCYCODESRESPONSE._serialized_end=130
+  _CURRENCYCONVERTERSERVICE._serialized_start=133
+  _CURRENCYCONVERTERSERVICE._serialized_end=278
 # @@protoc_insertion_point(module_scope)
