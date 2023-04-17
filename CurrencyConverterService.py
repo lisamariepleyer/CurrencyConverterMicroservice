@@ -6,6 +6,7 @@ import CurrencyConverterService_pb2
 import CurrencyConverterService_pb2_grpc
 
 from BaseCurrencies import BaseCurrencies
+from Converter import Converter
 
 
 class CurrencyConverterServiceServicer(CurrencyConverterService_pb2_grpc.CurrencyConverterServiceServicer):
@@ -13,6 +14,15 @@ class CurrencyConverterServiceServicer(CurrencyConverterService_pb2_grpc.Currenc
         base_currencies = BaseCurrencies()
         currency_codes = base_currencies.getCurrencyRateDictionary().keys()
         return CurrencyConverterService_pb2.CurrencyCodesResponse(currencyCodes=currency_codes)
+
+    def getConvertedValue(self, request, context):
+        converter = Converter()
+        rate = converter.getConvertedValue(
+            current_value=request.current_value,
+            current_currency_code=request.current_currency_code,
+            expected_currency_code=request.expected_currency_code
+        )
+        return CurrencyConverterService_pb2.ConvertValueResponse(rate=rate)
 
 
 def serve():
