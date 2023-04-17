@@ -19,12 +19,23 @@ class CurrencyConverterServiceStub(object):
                 request_serializer=CurrencyConverterService__pb2.CurrencyCodesRequest.SerializeToString,
                 response_deserializer=CurrencyConverterService__pb2.CurrencyCodesResponse.FromString,
                 )
+        self.getConvertedValue = channel.unary_unary(
+                '/CurrencyConverterService.CurrencyConverterService/getConvertedValue',
+                request_serializer=CurrencyConverterService__pb2.ConvertValueRequest.SerializeToString,
+                response_deserializer=CurrencyConverterService__pb2.ConvertValueResponse.FromString,
+                )
 
 
 class CurrencyConverterServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def getCurrencyCodes(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def getConvertedValue(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_CurrencyConverterServiceServicer_to_server(servicer, server):
                     servicer.getCurrencyCodes,
                     request_deserializer=CurrencyConverterService__pb2.CurrencyCodesRequest.FromString,
                     response_serializer=CurrencyConverterService__pb2.CurrencyCodesResponse.SerializeToString,
+            ),
+            'getConvertedValue': grpc.unary_unary_rpc_method_handler(
+                    servicer.getConvertedValue,
+                    request_deserializer=CurrencyConverterService__pb2.ConvertValueRequest.FromString,
+                    response_serializer=CurrencyConverterService__pb2.ConvertValueResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class CurrencyConverterService(object):
         return grpc.experimental.unary_unary(request, target, '/CurrencyConverterService.CurrencyConverterService/getCurrencyCodes',
             CurrencyConverterService__pb2.CurrencyCodesRequest.SerializeToString,
             CurrencyConverterService__pb2.CurrencyCodesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def getConvertedValue(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/CurrencyConverterService.CurrencyConverterService/getConvertedValue',
+            CurrencyConverterService__pb2.ConvertValueRequest.SerializeToString,
+            CurrencyConverterService__pb2.ConvertValueResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

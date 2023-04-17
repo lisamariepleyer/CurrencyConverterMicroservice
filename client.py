@@ -11,6 +11,13 @@ def run():
         response = stub.getCurrencyCodes(CurrencyConverterService_pb2.CurrencyCodesRequest())
         print(response.currencyCodes)
 
+        response = stub.getConvertedValue(CurrencyConverterService_pb2.ConvertValueRequest(
+            current_value=100,
+            current_currency_code='USD',
+            expected_currency_code='EUR'
+        ))
+        print(response.rate)
+
 
 if __name__ == '__main__':
     run()
