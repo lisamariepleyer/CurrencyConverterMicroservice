@@ -17,12 +17,24 @@ class CurrencyConverterServiceServicer(CurrencyConverterService_pb2_grpc.Currenc
 
     def getConvertedValue(self, request, context):
         converter = Converter()
-        rate = converter.getConvertedValue(
-            current_value=request.current_value,
-            current_currency_code=request.current_currency_code,
-            expected_currency_code=request.expected_currency_code
-        )
-        return CurrencyConverterService_pb2.ConvertValueResponse(rate=rate)
+
+        if not request.current_value:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            raise ValueError("Parameter current_value has incorrect type or is missing!")
+        if not request.current_currency_code or not request.expected_currency_code:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            raise ValueError("Currency code parameter is missing!")
+
+        try:
+            rate = converter.getConvertedValue(
+                current_value=request.current_value,
+                current_currency_code=request.current_currency_code,
+                expected_currency_code=request.expected_currency_code
+            )
+            return CurrencyConverterService_pb2.ConvertValueResponse(rate=rate)
+        except ValueError as value_error:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details(value_error.args[0])
 
 
 def serve():
